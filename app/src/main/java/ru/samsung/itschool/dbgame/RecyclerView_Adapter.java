@@ -11,27 +11,28 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class RecyclerView_Adapter extends RecyclerView.Adapter<RecyclerView_Adapter.ResultsViewHolder>{
+public class RecyclerView_Adapter extends RecyclerView.Adapter<RecyclerView_Adapter.ViewHolder> {
+
     ArrayList<Result> results;
     Context context;
 
-    RecyclerView_Adapter(Context context, ArrayList<Result> results){
-        //Log.d("Biggg", results.toString());
-        this.results = results;
+    RecyclerView_Adapter (Context context, ArrayList<Result> results) {
         this.context = context;
+        this.results = results;
     }
 
+    @NonNull
     @Override
-    public RecyclerView_Adapter.ResultsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.list_item, parent, false);
-        ResultsViewHolder viewHolder = new ResultsViewHolder(v);
+        ViewHolder viewHolder = new ViewHolder(v);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView_Adapter.ResultsViewHolder holder, int position) {
-        Result r = results.get(position);
-        holder.bind(r.name, String.valueOf(r.score));
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Result result = results.get(position);
+        holder.bind(result.name, String.valueOf(result.score));
     }
 
     @Override
@@ -39,20 +40,19 @@ public class RecyclerView_Adapter extends RecyclerView.Adapter<RecyclerView_Adap
         return results.size();
     }
 
-    class ResultsViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder{
         TextView nameText;
         TextView scoreText;
 
-        public ResultsViewHolder(@NonNull View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
             nameText = itemView.findViewById(R.id.nameText);
             scoreText = itemView.findViewById(R.id.scoreText);
         }
-        void bind(String name, String score){
+
+        void bind(String name, String score) {
             nameText.setText(name);
             scoreText.setText(score);
         }
-
-
     }
 }
