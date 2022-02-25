@@ -3,6 +3,7 @@ package ru.samsung.itschool.dbgame;
 import java.util.ArrayList;
 import android.app.Activity;
 import android.os.Bundle;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class HoFActivity extends Activity {
@@ -14,14 +15,14 @@ public class HoFActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_ho_f);
 		dbManager = DBManager.getInstance(this);
-		
-		TextView restv = (TextView)this.findViewById(R.id.results);
+
+		ListView results_list = findViewById(R.id.list_results);
 		ArrayList<Result> results = dbManager.getAllResults();
+		ArrayList resString = new ArrayList();
 		String resStr = "";
-		for (Result res : results)
-		{
-			resStr += res.name + ": " + res.score + "\n";
-		}	
-		restv.setText(resStr);
+		for (int i = 0; i < results.size(); i++) {
+			resString.add(results.get(i).toString());
+		}
+		results_list.setAdapter(new ResultsAdapter(this,  results));
 	}
 }

@@ -3,6 +3,7 @@ package ru.samsung.itschool.dbgame;
 import java.io.File;
 import java.util.ArrayList;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -32,14 +33,11 @@ public class DBManager {
 	}
 
 	void addResult(String username, int score) {
-		db.execSQL("INSERT INTO RESULTS VALUES ('" + username + "', " + score
-				+ ");");
+		ContentValues contentValues = new ContentValues();
+		contentValues.put("username", username);
+		contentValues.put("score", score);
+		db.insert("results", null, contentValues);
 	}
-	// Player One 150
-	// Запрос
-	// INSERT INTO RESULTS VALUES('Player One', 150);
-
-
 
 	ArrayList<Result> getAllResults() {
 		ArrayList<Result> data = new ArrayList<Result>();
