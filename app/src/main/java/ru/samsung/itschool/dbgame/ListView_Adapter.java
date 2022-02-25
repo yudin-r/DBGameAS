@@ -10,11 +10,11 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class ResultsAdapter extends BaseAdapter {
+public class ListView_Adapter extends BaseAdapter {
     ArrayList<Result> results;
     Context context;
 
-    ResultsAdapter(Context context, ArrayList<Result> results){
+    ListView_Adapter(Context context, ArrayList<Result> results){
         this.context = context;
         this.results = results;
     }
@@ -37,7 +37,7 @@ public class ResultsAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = LayoutInflater.from(context).inflate(R.layout.list_item, null);
-        TextView textView = view.findViewById(R.id.playerText);
+        TextView textView = view.findViewById(R.id.nameText);
         textView.setText(results.get(position).name);
         TextView textView_ = view.findViewById(R.id.scoreText);
         if (results.get(position).score > 500){

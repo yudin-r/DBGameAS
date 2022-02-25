@@ -30,8 +30,8 @@ public class MainActivity extends Activity {
 	}
 
 	public void stat(View v){
-	     Intent intent = new Intent(this, StatActivity.class);
-		 startActivity(intent);
+		Intent intent = new Intent(this, StatActivity.class);
+		startActivity(intent);
 	}
 
 	public void play(View v) {
@@ -54,7 +54,7 @@ public class MainActivity extends Activity {
 				playButton.setClickable(true);
 				playButton.setImageResource(R.drawable.green);
 				dbManager.addResult(MainActivity.this.playerName.getText().toString(),
-						            Integer.parseInt(MainActivity.this.gameResult.getText().toString()));
+						Integer.parseInt(MainActivity.this.gameResult.getText().toString()));
 			}
 		});
 
